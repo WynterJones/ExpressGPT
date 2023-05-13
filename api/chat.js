@@ -16,13 +16,15 @@ const chat = async (req, res) => {
     })
 
     if (completion.data.choices[0].message.content) {
-      return res.status(200).send(completion.data.choices[0].message.content)
+      return res.status(200).send({
+        reply: completion.data.choices[0].message.content,
+      })
     } else {
       return res.status(200).send('I do not understand.')
     }
   } catch (error) {
-    console.error(error.message)
-    return res.status(500).send(error.message || 'Something went wrong')
+    console.error(error)
+    return res.status(500).send(error || 'Something went wrong')
   }
 }
 
