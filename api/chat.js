@@ -6,7 +6,6 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration)
 
 const chat = async (req, res) => {
-  console.log({ role: 'system', content: req.body.role }, { role: 'user', content: req.body.message })
   try {
     const completion = await openai.createChatCompletion({
       model: process.env.OPENAI_MODEL,
