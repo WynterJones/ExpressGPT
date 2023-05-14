@@ -13,11 +13,10 @@ const chat = async (req, res) => {
         { role: 'system', content: req.body.role },
         { role: 'user', content: req.body.message },
       ],
-      temperature: 0.6,
-      max_tokens: 512,
-      top_p: 1.0,
-      frequency_penalty: 0.5,
-      presence_penalty: 0.7,
+      temperature: process.env.OPENAI_TEMPERATURE,
+      max_tokens: process.env.OPENAI_MAX_TOKENS,
+      frequency_penalty: process.env.OPENAI_FREQUENCY_PENALTY,
+      presence_penalty: process.env.OPENAI_PRESENCE_PENALTY,
     })
 
     if (completion.data.choices[0].message.content) {
